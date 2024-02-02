@@ -16,7 +16,7 @@ if "messages" not in st.session_state.keys(): # Initialize the chat message hist
 @st.cache_resource(show_spinner=False)
 def load_data():
     with st.spinner(text="Loading and indexing the American Football Wikipedia page – hang tight! This should take 1-2 minutes."):
-        reader = SimpleDirectoryReader(input_dir="./temp_files", recursive=True)
+        reader = SimpleDirectoryReader(input_dir="temp_files", recursive=True)
         docs = reader.load_data()
         service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-3.5-turbo", temperature=0.5, system_prompt="You are an expert on American Football."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
